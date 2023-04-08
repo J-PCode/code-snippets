@@ -1,7 +1,13 @@
 //this gets category image and header in my woocommerce store, this needs ACF plugin to work and you need to create etusivu_kuva
 <div class="row text-center">
     <?php
-    $categories = get_categories(array('taxonomy' => 'product_cat', 'hide_empty' => false));
+    $categories = get_categories(array('taxonomy' => 'product_cat', 'hide_empty' => false)); // this will pull all the categories that has image specified
+    <!--example below will pull only specified id categories
+        $categories = get_categories(array( 
+        'taxonomy' => 'product_cat',
+        'include' => array(1, 2, 3), // Array of category IDs to include
+        'hide_empty' => false
+    ));-->
     foreach ($categories as $category) {
         $cat_thumb_id = get_field('etusivu_kuva', 'product_cat_'.$category->term_id, false);
         if ($cat_thumb_id) {
